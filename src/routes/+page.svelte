@@ -1,5 +1,9 @@
 <script>
-    let name = "Yev"
+	import Button from "../lib/components/Button.svelte";
+
 </script>
 
-<span>Hello {name}</span>
+<div>
+    <h1>Hola soy Yev!</h1>
+    <p>Soy desarrollador front end</p>
+</div>

@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+
+:root, .light, .light-theme {
+    --main-font: 'Readex Pro', sans-serif;
+    --bg-color: #fff;
+
+    --violet-1: #fdfcff;
+    --violet-2: #faf8ff;
+    --violet-3: #f5eeff;
+    --violet-4: #eee3ff;
+    --violet-5: #e5d6fe;
+    --violet-6: #dac6f9;
+    --violet-7: #cbb0f3;
+    --violet-8: #b994eb;
+    --violet-9: #9255d5;
+    --violet-10: #8449c3;
+    --violet-11: #7e44bb;
+    --violet-12: #401f62;
+  
+    --violet-a1: #5500ff03;
+    --violet-a2: #4900ff07;
+    --violet-a3: #6900ff11;
+    --violet-a4: #6500ff1c;
+    --violet-a5: #5e00f929;
+    --violet-a6: #5a00e539;
+    --violet-a7: #5800d94f;
+    --violet-a8: #5901d06b;
+    --violet-a9: #5c00c0aa;
+    --violet-a10: #5300abb6;
+    --violet-a11: #4f00a2bb;
+    --violet-a12: #26004ce0;
+  
+    --violet-contrast: #fff;
+    --violet-surface: #f9f6ffcc;
+    --violet-indicator: #9255d5;
+    --violet-track: #9255d5;
+
+    --gray-1: #fcfcfd;
+    --gray-2: #f9f9fb;
+    --gray-3: #eff0f3;
+    --gray-4: #e7e8ec;
+    --gray-5: #e0e1e6;
+    --gray-6: #d8d9e0;
+    --gray-7: #cdced7;
+    --gray-8: #b9bbc6;
+    --gray-9: #8b8d98;
+    --gray-10: #80828d;
+    --gray-11: #62636c;
+    --gray-12: #1e1f24;
+  
+    --gray-a1: #00005503;
+    --gray-a2: #00005506;
+    --gray-a3: #00104010;
+    --gray-a4: #000b3618;
+    --gray-a5: #0009321f;
+    --gray-a6: #00073527;
+    --gray-a7: #00063332;
+    --gray-a8: #00083046;
+    --gray-a9: #00051d74;
+    --gray-a10: #00051b7f;
+    --gray-a11: #0002119d;
+    --gray-a12: #000107e1;
+  
+    --gray-contrast: #FFFFFF;
+    --gray-surface: #ffffffcc;
+    --gray-indicator: #8b8d98;
+    --gray-track: #8b8d98;
+  }
+  
+
+.dark, .dark-theme {
+    --main-font: 'Readex Pro', sans-serif;
+    --bg-color: #120f1a;
+
+    --violet-1: #120f1a;
+    --violet-2: #191524;
+    --violet-3: #281f40;
+    --violet-4: #342656;
+    --violet-5: #3e2e63;
+    --violet-6: #493971;
+    --violet-7: #594786;
+    --violet-8: #6f59a8;
+    --violet-9: #7754c3;
+    --violet-10: #66509e;
+    --violet-11: #bda6ff;
+    --violet-12: #e3ddfc;
+  
+    --violet-a1: #2b00f70a;
+    --violet-a2: #7342f815;
+    --violet-a3: #8457fc33;
+    --violet-a4: #8a5aff4a;
+    --violet-a5: #9466ff58;
+    --violet-a6: #9c75ff67;
+    --violet-a7: #a27efd7e;
+    --violet-a8: #a583ffa2;
+    --violet-a9: #9a6bffbf;
+    --violet-a10: #a07bfe98;
+    --violet-a11: #bda6ff;
+    --violet-a12: #e6e0fffc;
+  
+    --violet-contrast: #fff;
+    --violet-surface: #21193780;
+    --violet-indicator: #7754c3;
+    --violet-track: #7754c3;
+  }
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--violet-10);
+    line-height: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.025px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--gray-12);
+    line-height: 3rem;
+    font-weight: 600;
+    letter-spacing: -0.04px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--gray-12);
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.25rem;
+    color: var(--gray-12);
+    line-height: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.02rem;
+}
+
+h5 {
+    font-size: 1rem;
+    color: var(--gray-12);
+    line-height: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.02rem;
+}
+
+h6 {
+    font-size: 0.875rem;
+    color: var(--gray-12);
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.02rem;
+}
+
+p {
+	color: var(--gray-11);
+	font-weight: 400;
+	font-size: 1rem;
+	letter-spacing: 0.02rem;
+	line-height: 1.75rem;
+}
+
+input {
+	padding: .2rem;
+	border-radius: 4px;
+	border: 1px solid var(--gray-8);
+	background-color: transparent;
+	color: var(--text);
+}
+
+input:focus {
+	outline: 2px solid var(--violet-10);
+}
+
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    background-color: var(--bg-color);
+    height: 100vh;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+}
