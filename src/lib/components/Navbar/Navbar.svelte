@@ -4,6 +4,7 @@
 	import MdTranslate from 'svelte-icons/md/MdTranslate.svelte';
 	import MdWbSunny from 'svelte-icons/md/MdWbSunny.svelte';
 	import MdBrightness2 from 'svelte-icons/md/MdBrightness2.svelte';
+	import { onMount } from 'svelte';
 
 	let links = [
 		{ id: 1, name: 'Inicio', path: '/' },
@@ -13,10 +14,28 @@
 
 	let buttons = [
 		{ id: 1, icon: MdTranslate, onclick: () => console.log('Language') },
-		{ id: 2, icon: MdWbSunny, onclick: () => console.log('Theme') }
+		{ id: 2, icon: MdWbSunny, onclick: toggleTheme }
 	];
 
 	let activeLink = links[0].name;
+
+	let theme = 'dark';
+
+	onMount(() => {
+		const savedTheme = localStorage.getItem('theme');
+		if (savedTheme) {
+			theme = savedTheme;
+			document.documentElement.classList.add(theme);
+		}
+	});
+
+	function toggleTheme() {
+		const newTheme = theme === 'dark' ? 'ligh' : 'dark';
+		document.documentElement.classList.remove(theme);
+		document.documentElement.classList.add(newTheme);
+		theme = newTheme;
+		localStorage.setItem('theme', theme);
+	}
 
 	function setActive(link) {
 		activeLink = link;
@@ -82,13 +101,14 @@
 	}
 
 	a:hover {
-		color: var(--violet-10);
-		background-color: var(--violet-3);
+		color: var(--blue-10);
+		background-color: var(--blue-3);
+		border-radius: 4px;
 	}
 
 	a.active {
 		animation: slideIn 0.5s ease-out;
-		background-color: var(--violet-6);
+		background-color: var(--blue-8);
 		border-radius: 4px;
 		color: var(--violet-10);
 		transform: scale(1.05);
@@ -114,11 +134,12 @@
 	}
 
 	.icon-button:hover {
-		background-color: var(--violet-3);
+		background-color: var(--blue-3);
 		border-radius: 4px;
 	}
 
 	.icon {
+		color: var(--text);
 		width: 16px;
 		height: 16px;
 	}
