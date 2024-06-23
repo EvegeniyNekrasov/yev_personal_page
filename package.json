@@ -31,7 +31,10 @@
 		"npm": "10.7.0"
 	},
 	"dependencies": {
+		"carta-md": "^4.2.1",
 		"i18n": "^0.15.1",
+		"marked": "^13.0.0",
+		"mdsvex": "^0.11.2",
 		"svelte-icons": "^2.1.0"
 	}
 }

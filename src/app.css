@@ -75,6 +75,7 @@
 	--gray-track: #8b8d98;
 
 	--text: var(--gray-11);
+	--link-text: var(--blue-9);
 }
 
 .dark {
@@ -144,6 +145,7 @@
 	--gray-track: #8b8d98;
 
 	--text: white;
+	--link-text: var(--blue-11);
 }
 
 html {

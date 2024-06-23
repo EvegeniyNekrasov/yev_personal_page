@@ -13,7 +13,8 @@
 	let links = [
 		{ id: 1, name: $t('navbar.home'), path: '/' },
 		{ id: 2, name: $t('navbar.about'), path: '/about' },
-		{ id: 3, name: $t('navbar.works'), path: '/works' }
+		{ id: 3, name: $t('navbar.works'), path: '/works' },
+		{ id: 4, name: $t('navbar.blog'), path: '/reflexiones' }
 	];
 
 	let buttons = [{ id: 1, icon: MdWbSunny, onclick: toggleTheme }];
@@ -46,7 +47,8 @@
 	$: links = [
 		{ id: 1, name: $t('navbar.home'), path: '/' },
 		{ id: 2, name: $t('navbar.about'), path: '/about' },
-		{ id: 3, name: $t('navbar.works'), path: '/works' }
+		{ id: 3, name: $t('navbar.works'), path: '/works' },
+		{ id: 4, name: $t('navbar.blog'), path: '/reflexiones' }
 	];
 </script>
 
@@ -112,7 +114,7 @@
 		text-decoration: none;
 		padding: 10px 15px;
 		display: inline-block;
-		color: var(--text);
+		color: var(--link-text);
 		transition:
 			color 0.3s,
 			background-color 0.3s,
@@ -130,7 +132,7 @@
 		animation: slideIn 0.5s ease-out;
 		background-color: var(--blue-6);
 		border-radius: 4px;
-		color: var(--violet-10);
+		color: var(--link-text);
 		transform: scale(1.05);
 	}
 
@@ -164,20 +166,20 @@
 		height: 16px;
 	}
 
-    .languages {
-        background-color: var(--blue-3);
-        padding: 5px 10px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+	.languages {
+		background-color: var(--blue-3);
+		padding: 5px 10px;
+		border-radius: 5px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 
-    .languages select {
-        padding: 5px;
-        border: none;
-        background-color: transparent;
-        color: var(--text);
-        border-radius: 4px;
-    }
+	.languages select {
+		padding: 5px;
+		border: none;
+		background-color: transparent;
+		color: var(--text);
+		border-radius: 4px;
+	}
 </style>
