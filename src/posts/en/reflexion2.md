@@ -1,16 +1,18 @@
 ---
-title: Reflexion primera
-description: Reflexion primera.
+title: Second reflection
+description: Second reflection.
 date: '2023-4-14'
 categories:
-  - prueba 1
-  - prueba 2
+  - test 1
+  - test 2
 published: true
 ---
 
 ## Markdown
 
 Hey friends! 👋
+
+some english text
 
 ```ts
 function greet(name: string) {
