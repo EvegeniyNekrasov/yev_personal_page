@@ -30,3 +30,11 @@ export const t = derived(
 		(key, vars = {}) =>
 			translate($locale, key, vars)
 );
+
+export function getCurrentLocale() {
+	let currentLocale;
+	locale.subscribe((value) => {
+		currentLocale = value;
+	})();
+	return currentLocale;
+}

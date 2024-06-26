@@ -1,10 +1,11 @@
 <script lang="js">
 	import * as config from '$lib/config';
 	import { goto } from '$app/navigation';
+	import { t, locale, locales } from '../../../i18n';
 
 	export let data;
 	function handlePageChange(post) {
-		goto(`/${post}`);
+		goto(`/note/${$locale}/${post}`);
 	}
 </script>
 

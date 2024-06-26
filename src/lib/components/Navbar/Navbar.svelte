@@ -1,5 +1,6 @@
 <script lang="js">
 	import { t, locale, locales } from '../../../i18n';
+	import { goto } from '$app/navigation';
 
 	import { flip } from 'svelte/animate';
 	import { quintOut } from 'svelte/easing';
@@ -14,7 +15,7 @@
 		{ id: 1, name: $t('navbar.home'), path: '/' },
 		{ id: 2, name: $t('navbar.about'), path: '/about' },
 		{ id: 3, name: $t('navbar.works'), path: '/works' },
-		{ id: 4, name: $t('navbar.blog'), path: '/reflexiones' }
+		{ id: 4, name: $t('navbar.blog'), path: `/reflexiones/${$locale}` }
 	];
 
 	let buttons = [{ id: 1, icon: MdWbSunny, onclick: toggleTheme }];
@@ -30,6 +31,21 @@
 			document.documentElement.classList.add(theme);
 		}
 	});
+
+	function handleLocaleChange(newLocale) {
+		$locale = newLocale;
+		const currentPath = window.location.pathname;
+
+		// [NOTE]: refactor this to a function
+		if (currentPath.startsWith('/reflexiones')) {
+			goto(`/reflexiones/${newLocale}`);
+		}
+
+		if (currentPath.startsWith('/note')) {
+			const post = currentPath.split('/').pop();
+			goto(`/note/${newLocale}/${post}`);
+		}
+	}
 
 	function toggleTheme() {
 		const newTheme = theme === 'dark' ? 'ligh' : 'dark';
@@ -48,7 +64,7 @@
 		{ id: 1, name: $t('navbar.home'), path: '/' },
 		{ id: 2, name: $t('navbar.about'), path: '/about' },
 		{ id: 3, name: $t('navbar.works'), path: '/works' },
-		{ id: 4, name: $t('navbar.blog'), path: '/reflexiones' }
+		{ id: 4, name: $t('navbar.blog'), path: `/reflexiones/${$locale}` }
 	];
 </script>
 
@@ -81,7 +97,7 @@
 				<div class="icon">
 					<MdTranslate />
 				</div>
-				<select bind:value={$locale}>
+				<select bind:value={$locale} on:change={(e) => handleLocaleChange(e.target.value)}>
 					{#each locales as l}
 						<option value={l}>{l}</option>
 					{/each}
