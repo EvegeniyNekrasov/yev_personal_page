@@ -1,7 +1,7 @@
 ---
 title: Reflexion primera
 description: Reflexion primera.
-date: '2023-4-14'
+date: '2023-4'
 categories:
   - prueba 1
   - prueba 2

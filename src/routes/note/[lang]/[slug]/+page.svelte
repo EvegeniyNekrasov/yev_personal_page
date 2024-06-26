@@ -1,10 +1,11 @@
 <script lang="js">
 	export let data;
 	import { goto } from '$app/navigation';
+	import { t, locale, locales } from '../../../../i18n';
 	import MdKeyboardBackspace from 'svelte-icons/md/MdKeyboardBackspace.svelte';
 
 	function goBack() {
-		goto('/reflexiones');
+		goto(`/reflexiones/${$locale}`);
 	}
 </script>
 
