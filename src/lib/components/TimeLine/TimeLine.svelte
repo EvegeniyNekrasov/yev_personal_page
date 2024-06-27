@@ -65,7 +65,7 @@
 		display: flex;
 		gap: 10px;
 		align-items: center;
-        cursor: pointer;
+		cursor: pointer;
 	}
 
 	.header-link span {
@@ -73,8 +73,9 @@
 		font-size: 24px;
 	}
 
-    .header-link span:hover {
+	.header-link span:hover {
 		text-decoration: underline;
+		color: var(--blue-10);
 	}
 
 	.circle {
