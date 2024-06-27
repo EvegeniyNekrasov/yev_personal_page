@@ -2,9 +2,6 @@
 	import { t, locale, locales } from '../../../i18n';
 	import { goto } from '$app/navigation';
 
-	import { flip } from 'svelte/animate';
-	import { quintOut } from 'svelte/easing';
-
 	import MdTranslate from 'svelte-icons/md/MdTranslate.svelte';
 	import MdWbSunny from 'svelte-icons/md/MdWbSunny.svelte';
 	import MdBrightness2 from 'svelte-icons/md/MdBrightness2.svelte';
@@ -23,6 +20,7 @@
 	let activeLink = links[0].name;
 
 	let theme = 'dark';
+	let scrolled = false;
 
 	onMount(() => {
 		const savedTheme = localStorage.getItem('theme');
@@ -30,11 +28,23 @@
 			theme = savedTheme;
 			document.documentElement.classList.add(theme);
 		}
+
+		const handleScroll = () => {
+			scrolled = window.scrollY > 50;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
 	});
 
 	function handleLocaleChange(newLocale) {
 		$locale = newLocale;
 		const currentPath = window.location.pathname;
+
+		localStorage.setItem('locale', newLocale);
 
 		// [NOTE]: refactor this to a function
 		if (currentPath.startsWith('/reflexiones')) {
@@ -68,7 +78,7 @@
 	];
 </script>
 
-<nav>
+<nav class:scrolled>
 	<ul>
 		{#each links as link (link.id)}
 			<li>
@@ -114,7 +124,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 20px auto 0;
+		padding: 20px;
+		border-radius: 10px;
+		transition:
+			background-color 0.3s ease,
+			backdrop-filter 0.3s ease;
 	}
 
 	ul {
@@ -197,5 +211,9 @@
 		background-color: transparent;
 		color: var(--text);
 		border-radius: 4px;
+	}
+
+	nav.scrolled {
+		background-color: var(--bg-color);
 	}
 </style>

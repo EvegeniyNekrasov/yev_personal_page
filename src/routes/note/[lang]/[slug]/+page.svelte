@@ -2,11 +2,12 @@
 	export let data;
 	import { goto } from '$app/navigation';
 	import { t, locale, locales } from '../../../../i18n';
-	import MdKeyboardBackspace from 'svelte-icons/md/MdKeyboardBackspace.svelte';
+	import BreadCrump from '../../../../lib/components/BreadCrump/BreadCrump.svelte';
+	import { getReflexionCrumbs } from '../../../../utils/crumbs-utils.js';
+	import Badge from '../../../../lib/components/Badge/Badge.svelte';
+	import { formatHumanReadableDate } from '../../../../utils/datetime-utils';
 
-	function goBack() {
-		goto(`/reflexiones/${$locale}`);
-	}
+	$: crumbs = getReflexionCrumbs($locale);
 </script>
 
 <svelte:head>
@@ -15,25 +16,20 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
+<div class="go-back">
+	<BreadCrump {crumbs} />
+</div>
 <article>
-	<div class="go-back">
-		<div class="icon">
-			<MdKeyboardBackspace />
-		</div>
-		<button on:click={goBack}>Go back</button>
-	</div>
-	<hgroup>
-		<h1>{data.meta.title}</h1>
-		<p>Published at {data.meta.date}</p>
-	</hgroup>
-
-	<div class="tags">
-		{#each data.meta.categories as category}
-			<span class="surface-4">&num;{category}</span>
-		{/each}
-	</div>
-
 	<div class="prose">
+		<hgroup>
+			<h1>{data.meta.title}</h1>
+			<p>Published at {formatHumanReadableDate(data.meta.date, $locale)}</p>
+			<div class="tags">
+				{#each data.meta.categories as category}
+					<Badge BgColor="var(--blue-8)" color="var(--blue-2)" name={category} />
+				{/each}
+			</div>
+		</hgroup>
 		<svelte:component this={data.content} />
 	</div>
 </article>
@@ -42,36 +38,28 @@
 	article {
 		max-inline-size: var(--size-content-3);
 		margin-inline: auto;
+		display: flex;
+		gap: 10px;
+		border: 1px solid var(--text);
+		border-radius: 10px;
+		padding: 44px;
 	}
 
-	h1 {
-		text-transform: capitalize;
-	}
-
-	h1 + p {
-		margin-top: var(--size-2);
-		color: var(--text-2);
+	.prose {
+		max-width: 100%;
+		text-wrap: pretty;
 	}
 
 	.tags {
 		display: flex;
-		gap: var(--size-3);
+		gap: 12px;
 		margin-top: var(--size-7);
-	}
-
-	.tags > * {
-		padding: var(--size-2) var(--size-3);
-		border-radius: var(--radius-round);
 	}
 
 	.go-back {
 		display: flex;
 		gap: 10px;
 		align-items: center;
-	}
-
-	.icon {
-		width: 24px;
-		height: 24px;
+		margin-bottom: 10px;
 	}
 </style>
