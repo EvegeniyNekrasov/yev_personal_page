@@ -1,9 +1,13 @@
 <script>
-	import '../app.css';
 	import Navbar from '../lib/components/Navbar/Navbar.svelte';
+	import { fly } from 'svelte/transition';
 
 	let date = new Date();
 	let year = date.getFullYear();
+
+	export let data;
+	const ANIMATION_VALUE = 115;
+	import '../app.css';
 </script>
 
 <div class="wrapper">
@@ -11,7 +15,14 @@
 		<Navbar />
 	</header>
 	<main>
-		<slot></slot>
+		{#key data.url}
+			<div
+				in:fly={{ x: -200, duration: ANIMATION_VALUE, delay: ANIMATION_VALUE }}
+				out:fly={{ duration: ANIMATION_VALUE, duration: ANIMATION_VALUE }}
+			>
+				<slot />
+			</div>
+		{/key}
 	</main>
 	<footer>
 		<p>© {year} Evgeniy A. Nekrasov</p>
