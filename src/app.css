@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 * {
 	margin: 0;
@@ -7,9 +7,8 @@
 	font-family: var(--main-font);
 }
 
-:root,
-.light {
-	--main-font: 'Readex Pro', sans-serif;
+:root {
+	font-family: 'DM Sans', sans-serif;
 	--bg-color: #fff;
 
 	--blue-1: #fdfdfe;
@@ -74,84 +73,19 @@
 	--gray-indicator: #8b8d98;
 	--gray-track: #8b8d98;
 
-	--text: var(--gray-11);
+	--text: var(--gray-12);
 	--link-text: var(--blue-9);
-}
-
-.dark {
-	--main-font: 'Readex Pro', sans-serif;
-	--bg-color: var(--blue-1);
-
-	--blue-1: #0c111c;
-	--blue-2: #111725;
-	--blue-3: #172448;
-	--blue-4: #1d2e61;
-	--blue-5: #243974;
-	--blue-6: #2d4484;
-	--blue-7: #375098;
-	--blue-8: #405eb2;
-	--blue-9: #3d63dd;
-	--blue-10: #3f5cb0;
-	--blue-11: #93b4ff;
-	--blue-12: #d5e2ff;
-
-	--blue-a1: #0012fb0c;
-	--blue-a2: #1156f916;
-	--blue-a3: #2b64ff3b;
-	--blue-a4: #3567ff56;
-	--blue-a5: #3f71fd6b;
-	--blue-a6: #4b7afd7c;
-	--blue-a7: #5480ff91;
-	--blue-a8: #5783ffad;
-	--blue-a9: #4571ffdb;
-	--blue-a10: #5580feab;
-	--blue-a11: #93b4ff;
-	--blue-a12: #d5e2ff;
-
-	--blue-contrast: #fff;
-	--blue-surface: #111d3980;
-	--blue-indicator: #3d63dd;
-	--blue-track: #3d63dd;
-
-	--gray-1: #fcfcfd;
-	--gray-2: #f9f9fb;
-	--gray-3: #eff0f3;
-	--gray-4: #e7e8ec;
-	--gray-5: #e0e1e6;
-	--gray-6: #d8d9e0;
-	--gray-7: #cdced7;
-	--gray-8: #b9bbc6;
-	--gray-9: #8b8d98;
-	--gray-10: #80828d;
-	--gray-11: #62636c;
-	--gray-12: #1e1f24;
-
-	--gray-a1: #00005503;
-	--gray-a2: #00005506;
-	--gray-a3: #00104010;
-	--gray-a4: #000b3618;
-	--gray-a5: #0009321f;
-	--gray-a6: #00073527;
-	--gray-a7: #00063332;
-	--gray-a8: #00083046;
-	--gray-a9: #00051d74;
-	--gray-a10: #00051b7f;
-	--gray-a11: #0002119d;
-	--gray-a12: #000107e1;
-
-	--gray-contrast: #ffffff;
-	--gray-surface: #ffffffcc;
-	--gray-indicator: #8b8d98;
-	--gray-track: #8b8d98;
-
-	--text: white;
-	--link-text: var(--blue-11);
 }
 
 html {
 	background-color: var(--bg-color);
 	color: var(--text);
 	transition: background-color 0.3s;
+	cursor: none;
+}
+
+a {
+	cursor: none;
 }
 
 h1 {
@@ -214,8 +148,13 @@ input {
 	border: 1px solid var(--gray-8);
 	background-color: transparent;
 	color: var(--text);
+	cursor: none;
 }
 
 input:focus {
 	outline: 2px solid var(--violet-10);
+}
+
+select {
+	cursor: none;
 }
