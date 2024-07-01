@@ -4,12 +4,13 @@
 
 	let date = new Date();
 	let year = date.getFullYear();
-
 	export let data;
 	const ANIMATION_VALUE = 115;
 	import '../app.css';
+	import CustomCursor from '../lib/components/CustomCursor/CustomCursor.svelte';
 </script>
 
+<CustomCursor />
 <div class="wrapper">
 	<header>
 		<Navbar />
@@ -38,7 +39,7 @@
 			'main'
 			'footer';
 		height: 100vh;
-		max-width: 1000px;
+		width: 100%;
 		margin: 0 auto;
 	}
 
@@ -56,7 +57,7 @@
 
 	main {
 		grid-area: main;
-		margin-top: 100px;
+		margin-top: 70px;
 		width: 100%;
 		height: 100%;
 	}

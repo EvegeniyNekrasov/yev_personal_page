@@ -3,8 +3,6 @@
 	import { goto } from '$app/navigation';
 
 	import MdTranslate from 'svelte-icons/md/MdTranslate.svelte';
-	import MdWbSunny from 'svelte-icons/md/MdWbSunny.svelte';
-	import MdBrightness2 from 'svelte-icons/md/MdBrightness2.svelte';
 
 	import { onMount } from 'svelte';
 
@@ -15,12 +13,7 @@
 		{ id: 4, name: $t('navbar.blog'), path: `/reflexiones/${$locale}` }
 	];
 
-	let buttons = [{ id: 1, icon: MdWbSunny, onclick: toggleTheme }];
-
 	let activeLink = links[0].name;
-
-	let theme = 'dark';
-	let scrolled = false;
 
 	onMount(() => {
 		const savedTheme = localStorage.getItem('theme');
@@ -28,16 +21,6 @@
 			theme = savedTheme;
 			document.documentElement.classList.add(theme);
 		}
-
-		const handleScroll = () => {
-			scrolled = window.scrollY > 50;
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
 	});
 
 	function handleLocaleChange(newLocale) {
@@ -57,14 +40,6 @@
 		}
 	}
 
-	function toggleTheme() {
-		const newTheme = theme === 'dark' ? 'ligh' : 'dark';
-		document.documentElement.classList.remove(theme);
-		document.documentElement.classList.add(newTheme);
-		theme = newTheme;
-		localStorage.setItem('theme', theme);
-	}
-
 	function setActive(link) {
 		activeLink = link;
 	}
@@ -78,57 +53,59 @@
 	];
 </script>
 
-<nav class:scrolled>
-	<ul>
-		{#each links as link (link.id)}
+<nav>
+	<div class="logo">
+		<div class="temp-logo"></div>
+	</div>
+	<div>
+		<ul>
+			{#each links as link (link.id)}
+				<li>
+					<a
+						class:active={activeLink === link.name}
+						href={link.path}
+						on:click={(e) => {
+							setActive(link.name);
+						}}
+					>
+						{link.name}
+					</a>
+				</li>
+			{/each}
 			<li>
-				<a
-					class:active={activeLink === link.name}
-					href={link.path}
-					on:click={(e) => {
-						setActive(link.name);
-					}}
-				>
-					{link.name}
-				</a>
-			</li>
-		{/each}
-		{#each buttons as button (button.id)}
-			<li>
-				<button class="icon-button" on:click={button.onclick}>
+				<div class="languages">
 					<div class="icon">
-						<svelte:component this={button.icon} />
+						<MdTranslate />
 					</div>
-				</button>
-			</li>
-		{/each}
-		<li>
-			<div class="languages">
-				<div class="icon">
-					<MdTranslate />
+					<select bind:value={$locale} on:change={(e) => handleLocaleChange(e.target.value)}>
+						{#each locales as l}
+							<option value={l}>{l}</option>
+						{/each}
+					</select>
 				</div>
-				<select bind:value={$locale} on:change={(e) => handleLocaleChange(e.target.value)}>
-					{#each locales as l}
-						<option value={l}>{l}</option>
-					{/each}
-				</select>
-			</div>
-		</li>
-	</ul>
+			</li>
+		</ul>
+	</div>
 </nav>
 
 <style>
 	nav {
-		max-width: 1000px;
+		width: 100%;
 		position: relative;
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
+		border-bottom: 1px solid black;
 		align-items: center;
-		padding: 20px;
-		border-radius: 10px;
+		padding: 10px;
 		transition:
 			background-color 0.3s ease,
 			backdrop-filter 0.3s ease;
+	}
+
+	.temp-logo {
+		width: 40px;
+		height: 40px;
+		background-color: black;
 	}
 
 	ul {
@@ -142,9 +119,8 @@
 
 	a {
 		text-decoration: none;
-		padding: 10px 15px;
 		display: inline-block;
-		color: var(--link-text);
+		color: black;
 		transition:
 			color 0.3s,
 			background-color 0.3s,
@@ -152,18 +128,10 @@
 		animation: slideIn 0.5s ease-out;
 	}
 
-	a:hover {
-		color: var(--blue-10);
-		background-color: var(--blue-3);
-		border-radius: 4px;
-	}
-
 	a.active {
 		animation: slideIn 0.5s ease-out;
-		background-color: var(--blue-6);
 		border-radius: 4px;
-		color: var(--link-text);
-		transform: scale(1.05);
+		color: gray;
 	}
 
 	@keyframes slideIn {
@@ -175,19 +143,6 @@
 			opacity: 1;
 			transform: translateX(0);
 		}
-	}
-
-	.icon-button {
-		padding: 8px;
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
-		outline: none;
-	}
-
-	.icon-button:hover {
-		background-color: var(--blue-3);
-		border-radius: 4px;
 	}
 
 	.icon {
@@ -211,9 +166,5 @@
 		background-color: transparent;
 		color: var(--text);
 		border-radius: 4px;
-	}
-
-	nav.scrolled {
-		background-color: var(--bg-color);
 	}
 </style>
