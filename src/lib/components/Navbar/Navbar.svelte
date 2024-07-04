@@ -1,7 +1,6 @@
 <script lang="js">
 	import { t, locale, locales } from '../../../i18n';
 	import { goto } from '$app/navigation';
-
 	import MdTranslate from 'svelte-icons/md/MdTranslate.svelte';
 
 	import { onMount } from 'svelte';

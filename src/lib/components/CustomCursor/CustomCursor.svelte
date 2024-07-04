@@ -1,10 +1,17 @@
 <script>
+	import { langName } from '../../../store/langName';
 	import { onMount } from 'svelte';
 
 	let isHover = false;
 	let isHoveredHeader = false;
 
 	let mouseCordinates = { x: 0, y: 0 };
+
+	let heroLangText;
+
+	langName.subscribe((value) => {
+		heroLangText = value;
+	});
 
 	onMount(() => {
 		document.addEventListener('mousemove', (e) => {
@@ -27,7 +34,11 @@
 			class:is-hovered-header={isHoveredHeader}
 			class:is-hover-circle={isHover}
 			class="circle-inner"
-		></div>
+		>
+			{#if heroLangText}
+				<span class="circle-lang" class:hovered={isHoveredHeader}>{heroLangText}</span>
+			{/if}
+		</div>
 		<div class:circle-outer={isHoveredHeader}></div>
 	</div>
 </div>
@@ -57,6 +68,23 @@
 		transition:
 			transform 1s cubic-bezier(0.075, 0.82, 0.165, 1),
 			background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.circle-inner span {
+		font-size: 4rem;
+		font-weight: 700;
+		color: white;
+	}
+
+	.circle-lang {
+		display: none;
+	}
+
+	.circle-lang.hovered {
+		display: inline-block;
 	}
 
 	.is-hover-cursor {
