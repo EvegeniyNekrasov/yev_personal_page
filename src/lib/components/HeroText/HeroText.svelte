@@ -44,6 +44,7 @@
 		overflow: hidden;
 		position: relative;
 		border-bottom: 1px solid black;
+		border-top: 1px solid black;
 	}
 
 	.marquee h1 {
@@ -54,6 +55,7 @@
 		font-weight: 700;
 		margin-top: 20px;
 		margin-bottom: 20px;
+		z-index: 1;
 	}
 
 	@keyframes marquee {
