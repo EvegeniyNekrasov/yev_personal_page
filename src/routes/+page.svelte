@@ -1,12 +1,8 @@
 <script>
-	let scrollText = 'FRONT-END DEVELOPER / DESIGNER';
+	import HeroText from '../lib/components/HeroText/HeroText.svelte';
 </script>
 
-<div class="marquee">
-	<h1>{scrollText}</h1>
-	<h1>{scrollText}</h1>
-</div>
-
+<HeroText />
 <div class="hero">
 	<span
 		>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod unde ad consectetur magni. Nemo
@@ -23,34 +19,6 @@
 </div>
 
 <style>
-	@keyframes scroll {
-		0% {
-			transform: translateX(0%);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
-
-	.marquee {
-		overflow: hidden;
-		white-space: nowrap;
-		box-sizing: border-box;
-		border-bottom: 1px solid black;
-		width: 100%;
-		padding: 10px 0;
-		position: relative;
-	}
-
-	.marquee h1 {
-		font-size: 3.5rem;
-		font-weight: 900;
-		display: inline-block;
-		padding-right: 100%;
-		animation: scroll 20s linear infinite;
-		color: black;
-	}
-
 	.hero {
 		display: flex;
 		flex-direction: column;
