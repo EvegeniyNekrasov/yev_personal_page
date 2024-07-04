@@ -1,28 +1,39 @@
 <script>
-	let scrollText = 'FRONT-END DEVELOPER / DESIGNER';
-	let texts = [
-		'前端开发者 / 设计师', // Chinese,
-		'FRONT-END 개발자 / 디자이너', // Korean
-		'フロントエンド開発者 / デザイナー', // Japanese,
-		'FRONT-END DEVELOPER / DESIGNER', // English
-		'DESARROLLADOR FRONT-END / DISEÑADOR', // Spanish
-		'DÉVELOPPEUR FRONT-END / DESIGNER', // French
-		'ENTWICKLER FRONT-END / DESIGNER', // German
-		'DESENVOLVEDOR FRONT-END / DESIGNER', // Portuguese
-		'SVILUPPATORE FRONT-END / DESIGNER', // Italian
-		'РАЗРАБОТЧИК FRONT-END / ДИЗАЙНЕР' // Russian
-	];
+	import { langName } from '../../../store/langName';
+	import { t, locale, locales } from '../../../i18n';
+	import { languagesObject } from '../../../utils/text-utils';
+
+	let scrollText = languagesObject[0].text;
+	let heroLang = languagesObject[0].langName;
+	changeLanguage(languagesObject[0].langName);
+
+	function changeLanguage(newLang) {
+		langName.set(newLang);
+	}
+
 	let currentTextIndex = 0;
 
 	function changeText() {
-		currentTextIndex = (currentTextIndex + 1) % texts.length;
-		scrollText = texts[currentTextIndex];
+		currentTextIndex = (currentTextIndex + 1) % languagesObject.length;
+		scrollText = languagesObject[currentTextIndex].text;
+		heroLang = languagesObject[currentTextIndex].langName;
+		changeLanguage(languagesObject[currentTextIndex].langName);
+	}
+
+	function handleChangeLanguage(lang) {
+		$locale = lang;
 	}
 </script>
 
 <div>
 	<div class="marquee">
-		<h1 on:animationiteration={changeText}>{scrollText}</h1>
+		<h1
+			role="none"
+			on:click={() => handleChangeLanguage(heroLang)}
+			on:animationiteration={changeText}
+		>
+			{scrollText}
+		</h1>
 	</div>
 </div>
 
