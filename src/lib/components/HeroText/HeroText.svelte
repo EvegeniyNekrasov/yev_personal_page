@@ -55,7 +55,6 @@
 		font-weight: 700;
 		margin-top: 20px;
 		margin-bottom: 20px;
-		z-index: 1;
 	}
 
 	@keyframes marquee {

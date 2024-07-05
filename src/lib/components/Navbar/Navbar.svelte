@@ -1,5 +1,7 @@
 <script lang="js">
 	import { t, locale, locales } from '../../../i18n';
+	import { langName } from '../../../store/langName';
+
 	import { goto } from '$app/navigation';
 	import MdTranslate from 'svelte-icons/md/MdTranslate.svelte';
 
@@ -24,7 +26,8 @@
 
 	function handleLocaleChange(newLocale) {
 		$locale = newLocale;
-		const currentPath = window.location.pathname;
+		langName.set(newLocale);
+		const currentPath = window.location.pathname;	
 
 		localStorage.setItem('locale', newLocale);
 

@@ -20,6 +20,7 @@
         width: 50vw;
 		height: auto;
 		background-color: white;
+        z-index: 10;
 	}
 
 	.header img {

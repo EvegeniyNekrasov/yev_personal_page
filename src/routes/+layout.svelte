@@ -16,6 +16,7 @@
 	<main>
 		{#key data.url}
 			<div
+				class="container"
 				in:fly={{ x: -200, duration: ANIMATION_VALUE, delay: ANIMATION_VALUE }}
 				out:fly={{ duration: ANIMATION_VALUE, duration: ANIMATION_VALUE }}
 			>
@@ -48,6 +49,7 @@
 		right: 0;
 		left: 0;
 		padding: 10px 0;
+		z-index: 9999;
 	}
 
 	main {
@@ -55,5 +57,11 @@
 		margin-top: 70px;
 		width: 100%;
 		height: 100%;
+	}
+
+	.container {
+		width: 100%;
+		min-height: 100%;
+		position: relative;
 	}
 </style>
