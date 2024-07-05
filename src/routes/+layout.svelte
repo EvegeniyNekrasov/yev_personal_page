@@ -2,8 +2,6 @@
 	import Navbar from '../lib/components/Navbar/Navbar.svelte';
 	import { fly } from 'svelte/transition';
 
-	let date = new Date();
-	let year = date.getFullYear();
 	export let data;
 	const ANIMATION_VALUE = 115;
 	import '../app.css';
@@ -18,6 +16,7 @@
 	<main>
 		{#key data.url}
 			<div
+				class="container"
 				in:fly={{ x: -200, duration: ANIMATION_VALUE, delay: ANIMATION_VALUE }}
 				out:fly={{ duration: ANIMATION_VALUE, duration: ANIMATION_VALUE }}
 			>
@@ -25,9 +24,6 @@
 			</div>
 		{/key}
 	</main>
-	<footer>
-		<p>© {year} Evgeniy A. Nekrasov</p>
-	</footer>
 </div>
 
 <style>
@@ -53,6 +49,7 @@
 		right: 0;
 		left: 0;
 		padding: 10px 0;
+		z-index: 9999;
 	}
 
 	main {
@@ -62,9 +59,9 @@
 		height: 100%;
 	}
 
-	footer {
-		grid-area: footer;
-		text-align: center;
-		padding: 20px;
+	.container {
+		width: 100%;
+		min-height: 100%;
+		position: relative;
 	}
 </style>

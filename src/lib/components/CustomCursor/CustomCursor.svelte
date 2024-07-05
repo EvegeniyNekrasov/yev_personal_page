@@ -71,6 +71,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		z-index: 5;
 	}
 
 	.circle-inner span {
@@ -94,11 +95,13 @@
 	.is-hovered-header {
 		transform: scale3d(0.4, 0.4, 0.4);
 		background-color: rgb(83, 87, 88);
+		z-index: 1000;
 	}
 
 	.is-hover-circle {
 		transform: scale3d(0.4, 0.4, 0.4);
 		background-color: white;
+		z-index: 1000;
 	}
 
 	.circle-outer {
@@ -112,6 +115,7 @@
 		transition:
 			transform 10s cubic-bezier(0.075, 0.82, 0.165, 1),
 			background 10s cubic-bezier(0.075, 0.82, 0.165, 1);
+		z-index: 1000;
 	}
 
 	.circle-outer:before {
@@ -125,6 +129,7 @@
 		left: 48%;
 		transform: translate(-50%, -50%);
 		animation: rotate-circle 5s linear infinite;
+        z-index: 1000;
 	}
 
 	@keyframes rotate-circle {
