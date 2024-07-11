@@ -1,11 +1,11 @@
 <script>
 	import Navbar from '../lib/components/Navbar/Navbar.svelte';
-	import { fly } from 'svelte/transition';
+	import CustomCursor from '../lib/components/CustomCursor/CustomCursor.svelte';
+	import PageChange from '../lib/components/Animation/PageChange.svelte';
+
+	import '../app.css';
 
 	export let data;
-	const ANIMATION_VALUE = 115;
-	import '../app.css';
-	import CustomCursor from '../lib/components/CustomCursor/CustomCursor.svelte';
 </script>
 
 <CustomCursor />
@@ -15,11 +15,7 @@
 	</header>
 	<main>
 		{#key data.url}
-			<div
-				class="container"
-				in:fly={{ x: -200, duration: ANIMATION_VALUE, delay: ANIMATION_VALUE }}
-				out:fly={{ duration: ANIMATION_VALUE, duration: ANIMATION_VALUE }}
-			>
+			<div>
 				<slot />
 			</div>
 		{/key}
@@ -49,7 +45,7 @@
 		right: 0;
 		left: 0;
 		padding: 10px 0;
-		z-index: 9999;
+		z-index: 9000;
 	}
 
 	main {

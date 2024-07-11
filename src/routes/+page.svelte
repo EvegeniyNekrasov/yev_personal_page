@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import CardCases from '../lib/components/CardCases/CardCases.svelte';
 	import HeroText from '../lib/components/HeroText/HeroText.svelte';
 	import FaGithubAlt from 'svelte-icons/fa/FaGithubAlt.svelte';
@@ -6,7 +7,8 @@
 	import FaBehance from 'svelte-icons/fa/FaBehance.svelte';
 	import SocialMediaLinks from '../lib/components/SocialMediaLinks/SocialMediaLinks.svelte';
 
-	let hovered = false;
+	import PageChange from '../lib/components/Animation/PageChange.svelte';
+
 
 	const socialMedia = [
 		{
@@ -30,6 +32,7 @@
 	];
 </script>
 
+<PageChange />
 <div class="main">
 	<div class="content">
 		<div class="stiky-wrapper">
@@ -69,13 +72,13 @@
 	.content {
 		width: 100%;
 		position: relative;
-		background-color: white;
+		background-color: var(--bg-color);
 	}
 	.stiky-wrapper {
 		width: 100%;
 		height: 100%;
 		position: relative;
-		background-color: white;
+		background-color: var(--bg-color);
 	}
 
 	.header {
@@ -102,7 +105,7 @@
 	.links {
 		position: fixed;
 		bottom: 0vw;
-		z-index: 9999;
+		z-index: 9000;
 	}
 
 	.links ul li {
@@ -118,6 +121,20 @@
 		align-items: flex-end;
 		width: 100%;
 		height: auto;
-		padding-top: 6.1vw;
+		padding-top: 5vw;
+	}
+
+	.animation {
+		position: fixed;
+		top: 0;
+		left: 0;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		height: 100vh;
+		background-color: var(--bg-color);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 9998;
 	}
 </style>
