@@ -7,9 +7,6 @@
 	import FaBehance from 'svelte-icons/fa/FaBehance.svelte';
 	import SocialMediaLinks from '../lib/components/SocialMediaLinks/SocialMediaLinks.svelte';
 
-	import PageChange from '../lib/components/Animation/PageChange.svelte';
-
-
 	const socialMedia = [
 		{
 			id: 1,
@@ -32,7 +29,6 @@
 	];
 </script>
 
-<PageChange />
 <div class="main">
 	<div class="content">
 		<div class="stiky-wrapper">
@@ -104,6 +100,7 @@
 
 	.links {
 		position: fixed;
+		min-width: 100%;
 		bottom: 0vw;
 		z-index: 9000;
 	}
@@ -111,7 +108,6 @@
 	.links ul li {
 		display: flex;
 		flex-direction: column;
-		gap: 20px;
 	}
 
 	.cases {

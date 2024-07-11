@@ -1,28 +1,44 @@
 <script lang="js">
-	import { fade } from 'svelte/transition';
+	import anime from 'animejs';
 	export let data;
-	let hovered = false;
+	import './socialMediaLinks.css';
 
-	function handleLinkClick() {
-		window.open(data.href, '_blank');
-	}
+	const handleLinkClick = () => window.open(data.href, '_blank');
 
-	function handleHover(e) {
+	const animationIn = (id) => {
+		const element = document.getElementById(`text-${id}`);
+		anime.timeline().add({
+			targets: element,
+			translateX: [-100, 0],
+			opacity: [0, 1],
+			easing: 'easeOutExpo',
+			duration: 1400
+		});
+	};
+
+	const animationOut = (id) => {
+		const element = document.getElementById(`text-${id}`);
+		anime.timeline().add({
+			targets: element,
+			translateX: [0, -100],
+			opacity: [1, 0],
+			easing: 'easeOutExpo',
+			duration: 1400
+		});
+	};
+
+	const handleHover = (e) => {
 		if (e.target.id == data.id) {
-			hovered = true;
+			animationIn(e.target.id);
 		}
-	}
-
-	function handleHoverOut() {
-		hovered = false;
-	}
+	};
 </script>
 
 <div
-	in:fade={{ delay: 2000, duration: 2000 }}
 	role="none"
 	on:mouseenter={handleHover}
-	on:mouseleave={handleHoverOut}
+	on:mouseleave={(e) => animationOut(e.target.id)}
+	on:click={handleLinkClick}
 	class="link-container"
 	id={data.id}
 >
@@ -30,47 +46,7 @@
 		<div class="icon">
 			<svelte:component this={data.icon} />
 		</div>
-		<a class:visible={hovered} href={data.href} target="_blank" rel="noopener noreferrer"
-			>{data.name}</a
-		>
+
+		<span id="text-{data.id}" class="text {data.id}">{data.name}</span>
 	</div>
 </div>
-
-<style>
-	.link-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 0 20px;
-		gap: 10px;
-		height: 80px;
-		width: fit-content;
-		background-color: var(--primary);
-	}
-
-	.data {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 12px;
-	}
-	.icon {
-		width: 30px;
-		height: 30px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 50%;
-		color: white;
-	}
-	a {
-		color: white;
-		font-size: 1.5rem;
-		font-weight: 700;
-		text-decoration: none;
-		display: none;
-	}
-	a.visible {
-		display: inline-block;
-	}
-</style>
