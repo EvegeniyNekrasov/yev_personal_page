@@ -52,7 +52,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 1000;
+		z-index: 9999;
 		pointer-events: none;
 	}
 
@@ -129,7 +129,7 @@
 		left: 48%;
 		transform: translate(-50%, -50%);
 		animation: rotate-circle 5s linear infinite;
-        z-index: 1000;
+		z-index: 1000;
 	}
 
 	@keyframes rotate-circle {

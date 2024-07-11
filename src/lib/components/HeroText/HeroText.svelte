@@ -2,14 +2,10 @@
 	import { langName } from '../../../store/langName';
 	import { t, locale, locales } from '../../../i18n';
 	import { languagesObject } from '../../../utils/text-utils';
-
+	const changeLanguage = (newLang) => langName.set(newLang);
 	let scrollText = languagesObject[0].text;
 	let heroLang = languagesObject[0].langName;
 	changeLanguage(languagesObject[0].langName);
-
-	function changeLanguage(newLang) {
-		langName.set(newLang);
-	}
 
 	let currentTextIndex = 0;
 
@@ -20,13 +16,17 @@
 		changeLanguage(languagesObject[currentTextIndex].langName);
 	}
 
-	function handleChangeLanguage(lang) {
-		$locale = lang;
-	}
+	const handleChangeLanguage = (lang) => ($locale = lang);
+
+	let animation = false;
+	const handleAnimationEnd = () => (animation = true);
 </script>
 
 <div>
 	<div class="marquee">
+		{#if !animation}
+			<div class="heroAnimation" on:animationend={handleAnimationEnd}></div>
+		{/if}
 		<h1
 			role="none"
 			on:click={() => handleChangeLanguage(heroLang)}
@@ -44,17 +44,15 @@
 		overflow: hidden;
 		position: relative;
 		border-bottom: 1px solid black;
-		border-top: 1px solid black;
 	}
 
 	.marquee h1 {
 		display: inline-block;
 		padding-left: 100%;
 		animation: marquee 10s linear infinite;
-		font-size: clamp(2rem, 5vw, 5rem);
+		font-size: clamp(2rem, 4vw, 4rem);
 		font-weight: 700;
 		margin-top: 20px;
-		margin-bottom: 20px;
 	}
 
 	@keyframes marquee {
@@ -63,6 +61,26 @@
 		}
 		100% {
 			transform: translate(-100%, 0);
+		}
+	}
+
+	.heroAnimation {
+		width: 100%;
+		height: 80px;
+		background-color: var(--bg-color);
+		position: absolute;
+		bottom: 0;
+		animation: animation 1.2s cubic-bezier(0, 0.36, 1, 0.59);
+		animation-delay: 1.2s;
+		z-index: 11;
+	}
+
+	@keyframes animation {
+		0% {
+			transform: translateY(0%);
+		}
+		100% {
+			transform: translateY(-100%);
 		}
 	}
 </style>

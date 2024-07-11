@@ -27,7 +27,7 @@
 	function handleLocaleChange(newLocale) {
 		$locale = newLocale;
 		langName.set(newLocale);
-		const currentPath = window.location.pathname;	
+		const currentPath = window.location.pathname;
 
 		localStorage.setItem('locale', newLocale);
 
@@ -56,9 +56,6 @@
 </script>
 
 <nav>
-	<div class="logo">
-		<div class="temp-logo"></div>
-	</div>
 	<div>
 		<ul>
 			{#each links as link (link.id)}
@@ -102,12 +99,6 @@
 		transition:
 			background-color 0.3s ease,
 			backdrop-filter 0.3s ease;
-	}
-
-	.temp-logo {
-		width: 40px;
-		height: 40px;
-		background-color: black;
 	}
 
 	ul {

@@ -19,13 +19,11 @@
 	/* font-family: 'DM Sans', sans-serif; */
 	font-family: 'Viga', sans-serif;
 
+	--primary: rgb(234, 233, 233);
+	--secondary: #9209de;
+	--text: rgb(234, 233, 233);
 
-	--primary: #DE1209;
-	--secondary: #9209DE;
-	--text: #1A151E;
-
-
-	--bg-color: #fff;
+	--bg-color: #14171b;
 
 	--blue-1: #fdfdfe;
 	--blue-2: #f7f9ff;
@@ -115,7 +113,7 @@ h1 {
 	line-height: 4rem;
 	font-weight: 700;
 	letter-spacing: -0.025px;
-	font-family: "RousseauDeco";
+	font-family: 'RousseauDeco';
 }
 
 h2 {
