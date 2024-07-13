@@ -50,7 +50,7 @@
 		display: inline-block;
 		padding-left: 100%;
 		animation: marquee 10s linear infinite;
-		font-size: clamp(2rem, 4vw, 4rem);
+		font-size: clamp(4rem, 12vw, 18rem);
 		font-weight: 700;
 		margin-top: 20px;
 	}
@@ -66,7 +66,7 @@
 
 	.heroAnimation {
 		width: 100%;
-		height: 80px;
+		height: 300px;
 		background-color: var(--bg-color);
 		position: absolute;
 		bottom: 0;
