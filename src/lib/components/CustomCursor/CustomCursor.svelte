@@ -62,7 +62,8 @@
 		left: -72px;
 		width: 150px;
 		height: 150px;
-		background-color: rgb(1, 1, 1);
+		/* background-color: rgb(1, 1, 1); */
+		background-color: white;
 		border-radius: 100%;
 		transform: scale3d(0.16, 0.16, 0.16);
 		transition:

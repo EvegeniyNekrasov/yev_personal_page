@@ -42,7 +42,7 @@
 
 <div class="container">
 	<div class="page-animation">
-		<h1 class="text">paco</h1>
+		<span class="text">paco</span>
 	</div>
 	{#if isAnimatingFinished}
 		<slot />
@@ -62,7 +62,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: #000;
+		background-color: var(--bg-color);
 		z-index: 9999;
 		align-items: center;
 		justify-content: center;

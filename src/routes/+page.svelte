@@ -1,101 +1,144 @@
 <script>
-	import { onMount } from 'svelte';
-	import CardCases from '../lib/components/CardCases/CardCases.svelte';
-	import HeroText from '../lib/components/HeroText/HeroText.svelte';
-	import FaGithubAlt from 'svelte-icons/fa/FaGithubAlt.svelte';
-	import FaLinkedinIn from 'svelte-icons/fa/FaLinkedinIn.svelte';
-	import FaBehance from 'svelte-icons/fa/FaBehance.svelte';
 	import SocialMediaLinks from '../lib/components/SocialMediaLinks/SocialMediaLinks.svelte';
 
-	const socialMedia = [
-		{
-			id: 1,
-			name: 'Github',
-			icon: FaGithubAlt,
-			href: 'https://github.com/EvegeniyNekrasov'
-		},
-		{
-			id: 2,
-			name: 'LinkedIn',
-			icon: FaLinkedinIn,
-			href: 'https://www.linkedin.com/in/evegeniynekrasov/'
-		},
-		{
-			id: 3,
-			name: 'Behance',
-			icon: FaBehance,
-			href: 'https://www.behance.net/evegeniynekrasov'
-		}
+	import { onMount } from 'svelte';
+	import { socialMedia } from '../utils/data-utils.js';
+
+	import anime from 'animejs';
+
+	const textos = [
+		'Hello and welcome',
+		'¡Hola y bienvenido!',
+		'Bonjour et bienvenue!',
+		'Ciao e benvenuto!',
+		'Hallo und willkommen!',
+		'こんにちは、ようこそ！',
+		'안녕하세요, 환영합니다!',
+		'你好，歡迎！',
+		'Olá e bem-vindo!',
+		'Привет и добро пожаловать!',
+		'Hej och välkommen!',
+		'Hei ja tervetuloa!',
+		'Hej och välkommen!',
+		'สวัสดีและยินดีต้อนรับ!',
+		'Chào mừng bạn!'
 	];
+
+	let currentTextIndex = 0;
+	const CSS_SLECTORS = ['.header', '.letter'];
+
+	const updateTextLetters = (textWrapper) => {
+		// Envolve every letter in span
+		// need it for the animation
+		textWrapper.innerHTML = textos[currentTextIndex].replace(
+			/\S/g,
+			"<span class='letter'>$&</span>"
+		);
+	};
+
+	function reloadTextAnimation(element, textWrapper) {
+		currentTextIndex++;
+		if (currentTextIndex === textos.length) currentTextIndex = 0;
+		updateTextLetters(textWrapper);
+		// In order to make the delay after first loop works we need to pause the animation
+		element.pause();
+		// And start it again
+		// [NOTE]: don't like this solution, in the future refactor this code
+		// and find other solution
+		animateText();
+	}
+
+	function animateText() {
+		let textWrapper = document.querySelector('.header');
+		updateTextLetters(textWrapper);
+		const animation = anime
+			.timeline({
+				loop: true,
+				loopComplete: () => reloadTextAnimation(animation, textWrapper)
+			})
+			
+			.add({
+				targets: CSS_SLECTORS,
+				opacity: [0, 1],
+				easing: 'easeInOutQuad',
+				duration: 2250,
+				delay: (el, i) => 250 * (i + 1)
+			})
+			
+			.add({
+				targets: CSS_SLECTORS[1],
+				opacity: 0,
+				duration: 1000,
+				easing: 'easeOutExpo',
+				delay: 1000
+			});
+	}
+
+	function animateLinks() {
+		anime({
+			targets: '.links ul li div',
+			translateX: [-50, 0],
+			duration: 600,
+
+			easing: 'easeInQuint',
+			delay: anime.stagger(60)
+		});
+	}
+
+	onMount(() => {
+		animateText();
+		animateLinks();
+	});
 </script>
 
-<div class="main">
+<div id="container" class="container">
+	<div class="header-wrapper">
+		<span class="header"></span>
+	</div>
 	<div class="content">
-		<div class="stiky-wrapper">
-			<div class="header">
-				<HeroText />
-				<div class="body-content">
-					<span>some text</span>
-					<div class="links">
-						<ul>
-							<li>
-								{#each socialMedia as item (item.id)}
-									<SocialMediaLinks data={item} />
-								{/each}
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="cases">
-				<CardCases />
-				<CardCases />
-				<CardCases />
-			</div>
-		</div>
+		<div></div>
+		<span>
+			At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+			voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+			cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est
+			laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+			tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
+			placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus
+			autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
+			voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
+			sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
+			doloribus asperiores repellat.
+		</span>
+	</div>
+	<div class="links">
+		<ul>
+			<li>
+				{#each socialMedia as item (item.id)}
+					<SocialMediaLinks data={item} />
+				{/each}
+			</li>
+		</ul>
 	</div>
 </div>
 
 <style>
-	.main {
-		position: absolute;
-		min-height: 100vh;
-		padding-left: 0;
-		padding-right: 0;
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		top: 80px;
 		width: 100%;
 	}
 
 	.content {
-		width: 100%;
-		position: relative;
-		background-color: var(--bg-color);
-	}
-	.stiky-wrapper {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		background-color: var(--bg-color);
+		display: flex;
+		justify-content: flex-end;
+		padding: 40px;
 	}
 
-	.header {
-		position: fixed;
-		overflow: hidden;
-		margin-bottom: -100vh;
-		width: 100%;
-		height: 100vh;
-		padding-top: 0;
-		padding-bottom: 0;
-		display: flex;
-		flex-direction: column;
-		top: 70px;
-	}
-
-	.body-content {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 100%;
-		height: 100%;
+	.content span {
+		max-width: 400px;
+		text-wrap: pretty;
 	}
 
 	.links {
@@ -110,27 +153,23 @@
 		flex-direction: column;
 	}
 
-	.cases {
-		display: flex;
-		flex-flow: column wrap;
-		justify-content: flex-start;
-		align-items: flex-end;
+	.header-wrapper {
 		width: 100%;
-		height: auto;
-		padding-top: 5vw;
+		padding: 40px;
+		min-height: 70px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.header {
+		width: 100%;
+		font-size: clamp(3rem, 4vw, 6rem);
+		font-weight: 900;
+		overflow: hidden;
+		min-height: 100px;
 	}
 
-	.animation {
-		position: fixed;
-		top: 0;
-		left: 0;
-		transform: translate(-50%, -50%);
-		width: 100%;
-		height: 100vh;
-		background-color: var(--bg-color);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index: 9998;
+	.header .letter {
+		display: inline-block;
 	}
 </style>
